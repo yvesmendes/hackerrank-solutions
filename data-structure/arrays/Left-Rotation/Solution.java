@@ -8,9 +8,29 @@ import java.util.regex.*;
 
 public class Solution {
 
+    // Complete the rotLeft function below.
+    static int[] rotLeft(int[] a, int d) {
+
+        if(a.length == d){
+            return a;
+        }
+        
+        int n = a.length; 
+        int mod = d % n;
+        
+        int[] finalArray = a.clone();        
+        for(int i = 0; i < n; ++i){
+            a[i] = finalArray[(i + mod) % n]; 
+        }
+
+        return a;
+    }
+
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
         String[] nd = scanner.nextLine().split(" ");
 
         int n = Integer.parseInt(nd[0]);
@@ -27,28 +47,21 @@ public class Solution {
             a[i] = aItem;
         }
 
-        int[] arrFinal = leftRotationArray(a, d);
+        int[] result = rotLeft(a, d);
 
-        for(int i = 0; i < arrFinal.length; i++){
-            System.out.print(arrFinal[i]+" ");
+        for (int i = 0; i < result.length; i++) {
+            bufferedWriter.write(String.valueOf(result[i]));
+
+            if (i != result.length - 1) {
+                bufferedWriter.write(" ");
+            }
         }
+
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
         scanner.close();
     }
-
-        private static int[] leftRotationArray(int[] arr, int numberOfRotations){
-            int[] a = arr.clone();
-            int firstValue = 0;
-            for(int i = 0; i < numberOfRotations; i++){  
-                firstValue = a[0];  
-            
-                for(int z = 0; z < a.length-1; z++){  
-                    a[z] = a[z+1];  
-                }  
-                a[a.length-1] = firstValue;  
-            }
-
-            return a;
-    }
 }
-
 
