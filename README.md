@@ -1,3 +1,3 @@
 # HackerRank Solutions
 
-This repository list all my HackerRank solutions.
+This repository list all of my HackerRank solutions.
